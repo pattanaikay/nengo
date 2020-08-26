@@ -7,6 +7,7 @@ import nengo.utils.numpy as npext
 
 
 def nrmse(actual, target, **kwargs):
+    """Computes the RMS error normalized by the target's RMS power."""
     actual = np.asarray(actual)
     target = np.asarray(target)
     return npext.rms(actual - target, **kwargs) / npext.rms(target, **kwargs)
