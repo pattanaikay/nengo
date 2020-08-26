@@ -3,6 +3,14 @@ import threading
 
 import numpy as np
 
+import nengo.utils.numpy as npext
+
+
+def nrmse(actual, target, **kwargs):
+    actual = np.asarray(actual)
+    target = np.asarray(target)
+    return npext.rms(actual - target, **kwargs) / npext.rms(target, **kwargs)
+
 
 def signals_allclose(  # noqa: C901
     t,

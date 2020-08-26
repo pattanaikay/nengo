@@ -10,19 +10,13 @@ from nengo.exceptions import BuildError, ValidationError
 from nengo.learning_rules import LearningRuleTypeParam, PES, BCM, Oja, RLS, Voja
 from nengo.processes import WhiteSignal
 from nengo.synapses import Alpha, Lowpass
-import nengo.utils.numpy as npext
+from nengo.utils.testing import nrmse
 
 from nengo.builder.learning_rules import SimRLS
 
 
 def best_weights(weight_data):
     return np.argmax(np.sum(np.var(weight_data, axis=0), axis=0))
-
-
-def nrmse(actual, target, **kwargs):
-    actual = np.asarray(actual)
-    target = np.asarray(target)
-    return npext.rms(actual - target, **kwargs) / npext.rms(target, **kwargs)
 
 
 def _test_pes(
